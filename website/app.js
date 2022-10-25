@@ -16,12 +16,11 @@ submitBtn.addEventListener("click", (e) => {
     if (city !== "") {
         getCity(geoURL, city, geoUsername)
             .then(function (data) {
-                getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
+                return getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
             }).then(weatherData => {
-                console.log(weatherData)
-                postWeatherData("/addWeather", { temp: weatherData })
+                return postWeatherData("/addWeather", { temp: weatherData['data'][0]['temp'] })
             }).then(function () {
-                receiveWeatherData()
+                return receiveWeatherData()
             }).catch(function (error) {
                 console.log(error);
                 alert("Invalid city");
@@ -49,7 +48,7 @@ const postWeatherData = async (url = "", data = {}) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            temp: data
+            temp: data.temp
         })
     });
 
@@ -66,7 +65,7 @@ const receiveWeatherData = async () => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        document.getElementById("temp").innerHTML = allData.temp;
+        document.getElementById("temp").innerHTML = allData['temp'];
     }
     catch (error) {
         console.log("error", error)
