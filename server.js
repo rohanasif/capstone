@@ -42,10 +42,12 @@ app.post("/add", (req, res) => {
 
 app.post("/addWeather", (req, res) => {
     weatherData['temp'] = req.body.temp;
+    res.send(weatherData);
 })
 
 app.post("/addPicture", (req, res) => {
     picturesData['pic'] = req.body.pic;
+    res.send(picturesData);
 })
 
 // Setup Server

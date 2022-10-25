@@ -17,8 +17,10 @@ submitBtn.addEventListener("click", (e) => {
         getCity(geoURL, city, geoUsername)
             .then(function (data) {
                 getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
-            }).then(function (data) {
-                postWeatherData("/addWeather", { temp: data.temp })
+
+            }).then(weatherData => {
+
+                postWeatherData("/addWeather", { temp: weatherData.data[0]['temp'] })
             }).then(function () {
                 receiveWeatherData()
             }).catch(function (error) {
@@ -32,7 +34,6 @@ const getCity = async (geoURL, city, geoUsername) => {
     const res = await fetch(`${geoURL}q=${city}&username=${geoUsername}`);
     try {
         const cityData = await res.json();
-        console.log(cityData)
         return cityData;
     }
     catch (error) {
