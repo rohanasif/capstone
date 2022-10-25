@@ -44,10 +44,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: "./website/index.html",
-            filename: "./index.html",
-        }),
+        new HtmlWebPackPlugin(),
         new CleanWebpackPlugin({
             // Simulate the removal of files
             dry: true,
