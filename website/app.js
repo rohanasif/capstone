@@ -111,7 +111,7 @@ const receivePictureData = async () => {
     const request = await fetch("/allPictures");
     try {
         const allData = await request.json()
-        document.getElementById("picture").src = allData[''];
+        document.getElementById("city-pic").src = allData['pic'];
     }
     catch (error) {
         console.log("error", error)
