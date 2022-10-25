@@ -19,8 +19,6 @@ submitBtn.addEventListener("click", (e) => {
 
     const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
 
-    console.log(future);
-    console.log(present);
     if (city !== "" || departTime !== "") {
 
         document.getElementById("time").innerHTML = `Departure in ${(future - present) / 3600000 / 24} days`
