@@ -6,7 +6,7 @@ const dotenv = require("dotenv")
 dotenv.config();
 
 module.exports = {
-    entry: './src/client/index.js',
+    entry: './website/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name][contenthash].js',
@@ -49,7 +49,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
+            template: path.resolve(__dirname, "website/index.html"),
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
