@@ -6,7 +6,9 @@ const dotenv = require("dotenv")
 dotenv.config();
 
 module.exports = {
-    entry: './website/app.js',
+    entry: {
+        main: './website/app.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name][contenthash].js',
