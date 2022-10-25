@@ -5,17 +5,25 @@ const weatherKey = "20028a8267a24bba9a807362767bc4a7"
 const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731"
 const pixabayURL = "https://pixabay.com/api?"
 
-let d = new Date();
-let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
-
+const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const city = document.getElementById("city").value;
+    const departure = document.getElementById("date").value;
+    const [depart_date, depart_time] = departure.split("T")
+    const [depart_year, depart_month, depart_day] = depart_date.split("-")
+    const [depart_hour, depart_minute] = depart_time.split(":")
 
-    if (city !== "") {
+    const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
+
+    console.log(future);
+    console.log(present);
+    if (city !== "" || departTime !== "") {
+
+        document.getElementById("time").innerHTML = `Departure in ${(future - present) / 3600000 / 24} days`
         getCity(geoURL, city, geoUsername)
             .then(function (data) {
                 return getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
@@ -25,7 +33,7 @@ submitBtn.addEventListener("click", (e) => {
                 return receiveWeatherData()
             }).catch(function (error) {
                 console.log(error);
-                alert("Invalid city");
+                alert("Please enter a valid city and a valid time");
             })
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
@@ -77,7 +85,7 @@ const receiveWeatherData = async () => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        document.getElementById("temp").innerHTML = allData['temp'];
+        document.getElementById("temp").innerHTML = "TEMPERATURE: " + allData['temp'];
     }
     catch (error) {
         console.log("error", error)
