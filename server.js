@@ -29,7 +29,7 @@ app.get("/allWeather", function sendWeather(req, res) {
     res.send(weatherData);
 })
 
-app.get("allPictures", function sendPictures(req, res) {
+app.get("/allPictures", function sendPictures(req, res) {
     res.send(picturesData);
 })
 
@@ -37,7 +37,7 @@ app.post("/add", (req, res) => {
     projectData['lat'] = req.body.lat;
     projectData['lng'] = req.body.lng;
     projectData['countryName'] = req.body.countryName
-    res.send(projectData);
+    res.send(cityData);
 })
 
 app.post("/addWeather", (req, res) => {
