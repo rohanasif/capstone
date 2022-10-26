@@ -34,9 +34,12 @@ submitBtn.addEventListener("click", (e) => {
     const [depart_hour, depart_minute] = depart_time.split(":")
 
     const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
-
-    if (city !== "" || departure !== "" || future < present) {
-
+    console.log(future);
+    if (city === "" || departure === "" || future < present){
+        alert("Invalid input");
+    }
+    else{
+        
         time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
         forLoop();
@@ -54,8 +57,7 @@ submitBtn.addEventListener("click", (e) => {
                 console.log(error);
                 alert("No pictures found")
             })
-
-    }
+    } 
 })
 
 const getCity = async (geoURL, city, geoUsername) => {
