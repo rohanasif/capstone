@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const { ServiceWorkerPlugin } = require("service-worker-webpack")
 
 module.exports = {
     entry: './website/app.js',
@@ -18,6 +19,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./website/index.html",
             filename: "./index.html",
-        })
+        }),
+        new ServiceWorkerPlugin()
     ]
 }
