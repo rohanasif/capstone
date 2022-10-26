@@ -37,6 +37,7 @@ app.get("/allPictures", function sendPictures(req, res) {
 
 app.post("/addWeather", (req, res) => {
     weatherData['temp'] = req.body.temp;
+    weatherData['datetime'] = req.body.datetime;
     res.send(weatherData);
 })
 

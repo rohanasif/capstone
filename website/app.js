@@ -26,7 +26,7 @@ submitBtn.addEventListener("click", (e) => {
             .then(function (data) {
                 return getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
             }).then(weatherData => {
-                return postWeatherData("/addWeather", { temp: weatherData['data'][0]['temp'] })
+                return postWeatherData("/addWeather", { temp: weatherData['data'][0]['temp'], datetime: weatherData['data'][0]['datetime'] })
             }).then(function () {
                 return receiveWeatherData()
             }).catch(function (error) {
@@ -68,12 +68,14 @@ const postWeatherData = async (url = "", data = {}) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            temp: data.temp
+            temp: data.temp,
+            datetime: data.datetime
         })
     });
 
     try {
         const newData = await response.json();
+        console.log(newData)
         return newData;
     }
     catch (error) {
@@ -85,7 +87,7 @@ const receiveWeatherData = async () => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        document.getElementById("temp").innerHTML = "TEMPERATURE: " + allData['temp'];
+        document.getElementById("temp").innerHTML = "DATE: " + allData['datetime'] + "\t" + "TEMPERATURE: " + allData['temp'];
     }
     catch (error) {
         console.log("error", error)
