@@ -19,7 +19,7 @@ submitBtn.addEventListener("click", (e) => {
 
     const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
 
-    if (city !== "" || departTime !== "") {
+    if (city !== "" || departTime !== "" || future < present) {
 
         document.getElementById("time").innerHTML = `Departure in ${(future - present) / 3600000 / 24} days`
         getCity(geoURL, city, geoUsername)
@@ -35,7 +35,9 @@ submitBtn.addEventListener("click", (e) => {
             })
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
-                return postPictureData("/addPicture", { pic: picsData['hits'][0]["webformatURL"] })
+                const total = picsData["totalHits"]
+                const picIndex = Math.floor(Math.random() * total);
+                return postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] })
             })
             .then(function () {
                 return receivePictureData()
