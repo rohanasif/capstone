@@ -8,14 +8,21 @@ const pixabayURL = "https://pixabay.com/api?"
 const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
-const temps = document.getElementById("temps");
+const resetBtn = document.getElementById("resetBtn");
 const entries = document.getElementById("entries");
 const dataContainer = document.getElementById("data-container");
 const imgContainer = document.getElementById("img-container");
 const entryHolder = document.getElementById("entry-holder");
 const time = document.getElementById("time");
+const temps = document.getElementById("temps");
 
+resetBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if(dataContainer){
+        dataContainer.replaceChildren();
+    }
 
+})
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -30,7 +37,7 @@ submitBtn.addEventListener("click", (e) => {
 
     if (city !== "" || departure !== "" || future < present) {
 
-        document.getElementById("time").innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
+        time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
         forLoop();
 
