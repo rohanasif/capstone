@@ -9,31 +9,32 @@
 
 <body>
   <div id="app">
-    <div class="headline">
+    <div id="headline">
       My travel plans
     </div>
-    <div class="container">
-      <div class="form-container">
+    <div id="container">
+      <div id="form-container">
         <form id="main-form">
-          <div class="city-form">
+          <div id="city-form">
             <label for="city">Enter City here</label>
-            <input type="text" id="city" placeholder="enter city here" required>
+            <input type="text" id="city" placeholder="Enter city here" required>
           </div>
-          <div class="date-form">
+          <div id="date-form">
             <label for="date">Enter departure date</label>
             <input type="datetime-local" id="date" required>
             <button id="submitBtn" type="submit"> Submit </button>
           </div>
         </form>
       </div>
-      <p class="title"><b>DETAILS</b></p>
-      <div class="data-container">
-        <div id="img-container">
-        </div>
-        <div id="entryHolder">
+      <p id="title"><b>DETAILS</b></p>
+      <div id="data-container">
+        <div id="img-container"></div>
+        <div id="entry-holder">
           <div id="time"></div>
           <br>
-          <div><b>Temperature for next 16 days:</b></div>
+          <div>
+            <b>Temperature for next 16 days:</b>
+          </div>
           <div id="temps">
             <ul id="entries"></ul>
           </div>

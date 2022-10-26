@@ -9,9 +9,16 @@ const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
 const temps = document.getElementById("temps");
+const entries = document.getElementById("entries");
+const dataContainer = document.getElementById("data-container");
+const imgContainer = document.getElementById("img-container");
+const entryHolder = document.getElementById("entry-holder");
+const time = document.getElementById("time");
+
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
+
     const city = document.getElementById("city").value;
     const departure = document.getElementById("date").value;
 
