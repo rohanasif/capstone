@@ -8,7 +8,7 @@ const pixabayURL = "https://pixabay.com/api?"
 const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
-
+const temps = document.getElementById("temps");
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -34,8 +34,9 @@ submitBtn.addEventListener("click", (e) => {
                 return postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] })
             })
             .then(function () {
-                return receivePictureData()
-            }).catch(function (error) {
+                return receivePictureData();
+            })
+            .catch(function (error) {
                 console.log(error);
                 alert("No pictures found")
             })
@@ -80,9 +81,11 @@ const postWeatherData = async (url = "", data = {}) => {
 const receiveWeatherData = async (i) => {
     const request = await fetch("/allWeather");
     try {
-        const allData = await request.json()
-        const node = document.getElementById(`entry-${i + 1}`)
-        node.innerHTML = `DATE: ${allData['datetime']}     TEMPERATURE: ${allData['temp']}`
+        const allData = await request.json();
+        const node = document.createElement("li");
+        node.setAttribute("id", `entry-${i + 1}`);
+        node.innerHTML = `DATE: ${allData['datetime']}     TEMPERATURE: ${allData['temp']}`;
+
         document.getElementById("entries").appendChild(node);
     }
     catch (error) {
