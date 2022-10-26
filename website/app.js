@@ -19,9 +19,9 @@ submitBtn.addEventListener("click", (e) => {
 
     const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
 
-    if (city !== "" || departTime !== "" || future < present) {
+    if (city !== "" || departure !== "" || future < present) {
 
-        document.getElementById("time").innerHTML = `Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days`
+        document.getElementById("time").innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
         getCity(geoURL, city, geoUsername)
             .then(function (data) {
@@ -89,9 +89,8 @@ const receiveWeatherData = async () => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        const node = document.createElement("li");
-        const textnode = document.createTextNode("DATE: " + allData['datetime'] + "\t" + "TEMPERATURE: " + allData['temp']);
-        node.appendChild(textnode);
+        const node = document.getElementById("entry")
+        node.innerHTML = "DATE: " + allData['datetime'] + "\t" + "TEMPERATURE: " + allData['temp']
         document.getElementById("entries").appendChild(node);
     }
     catch (error) {
