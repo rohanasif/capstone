@@ -1,3 +1,7 @@
+import {getCity} from "./js/cityFunctions"
+import {postWeatherData, receiveWeatherData, getWeather} from "./js/weatherFunctions"
+import {updatePictureText, postPictureData, receivePictureData, getPictures} from "./js/pictureFunctions"
+
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
 const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?"
@@ -9,12 +13,8 @@ const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
-const entries = document.getElementById("entries");
-const dataContainer = document.getElementById("data-container");
-const imgContainer = document.getElementById("img-container");
-const entryHolder = document.getElementById("entry-holder");
 const time = document.getElementById("time");
-const temps = document.getElementById("temps");
+
 
 resetBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ submitBtn.addEventListener("click", (e) => {
         time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
         forLoop();
-
+        updatePictureText(getCity);
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
                 const total = picsData['hits'].length
@@ -57,114 +57,6 @@ submitBtn.addEventListener("click", (e) => {
             })
     } 
 })
-
-const getCity = async (geoURL, city, geoUsername) => {
-    const res = await fetch(`${geoURL}q=${city}&username=${geoUsername}`);
-    try {
-        const cityData = await res.json();
-        return cityData;
-    }
-    catch (error) {
-        console.log("error", error);
-    }
-}
-
-
-const postWeatherData = async (url = "", data = {}) => {
-    const response = await fetch(url, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            temp: data.temp,
-            datetime: data.datetime
-        })
-    });
-
-    try {
-        const newData = await response.json();
-        return newData;
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
-
-const receiveWeatherData = async (i) => {
-    const request = await fetch("/allWeather");
-    try {
-        const allData = await request.json();
-        const node = document.createElement("li");
-        node.setAttribute("id", `entry-${i + 1}`);
-        node.innerHTML = `<b>DATE:</b> ${allData['datetime']} <b>TEMPERATURE:</b> ${allData['temp']}`;
-
-        document.getElementById("entries").appendChild(node);
-    }
-    catch (error) {
-        console.log("error", error)
-    }
-}
-
-const getWeather = async (weatherURL, weatherKey, lat, lon) => {
-    const res = await fetch(`${weatherURL}&lat=${lat}&lon=${lon}&key=${weatherKey}`);
-    try {
-        const weatherData = await res.json();
-        return weatherData;
-    }
-    catch (error) {
-        console.log("error", error);
-    }
-}
-
-const getPictures = async (city, pixabayURL, pixabayKey) => {
-    const query = city.split(" ").join("+");
-    const res = await fetch(`${pixabayURL}key=${pixabayKey}&q=${query}`);
-    try {
-        const picsData = await res.json();
-        return picsData;
-    }
-    catch (error) {
-        console.log("error", error)
-    }
-}
-
-const receivePictureData = async () => {
-    const request = await fetch("/allPictures");
-    try {
-        const allData = await request.json()
-        const node = document.createElement("img");
-        node.setAttribute("id", "city-pic");
-        node.setAttribute("src", `${allData['pic']}`);
-        node.setAttribute("alt", "Your city");
-        document.getElementById("img-container").appendChild(node);
-    }
-    catch (error) {
-        console.log("error", error)
-    }
-}
-
-const postPictureData = async (url = "", data = {}) => {
-    const response = await fetch(url, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            pic: data.pic
-        })
-    });
-
-    try {
-        const newData = await response.json();
-        return newData;
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
 
 const forLoop = async () => {
     for (i = 0; i < 16; i++) {
