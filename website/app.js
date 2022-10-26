@@ -35,8 +35,10 @@ submitBtn.addEventListener("click", (e) => {
             })
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
-                const total = picsData["totalHits"]
+                const total = picsData['hits'].length
                 const picIndex = Math.floor(Math.random() * total);
+                console.log(picIndex)
+                console.log(picsData['hits'][0]["webformatURL"])
                 return postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] })
             })
             .then(function () {
