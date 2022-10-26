@@ -6,13 +6,7 @@ const dotenv = require("dotenv")
 dotenv.config();
 
 module.exports = {
-    entry: './website/app.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name][contenthash].js',
-        clean: true,
-        assetModuleFilename: "[name][ext]"
-    },
+    entry: './website/client/js/app.js',
     devtool: 'source-map',
     devServer: {
         historyApiFallback: true,
@@ -50,7 +44,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./website/index.html",
+            template: "./website/client/index.html",
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({

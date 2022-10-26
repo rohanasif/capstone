@@ -1,6 +1,6 @@
-import {getCity} from "./js/cityFunctions"
-import {postWeatherData, receiveWeatherData, getWeather} from "./js/weatherFunctions"
-import {updatePictureText, postPictureData, receivePictureData, getPictures} from "./js/pictureFunctions"
+import {getCity} from "./cityFunctions"
+import {postWeatherData, receiveWeatherData, getWeather} from "./weatherFunctions"
+import {updatePictureText, postPictureData, receivePictureData, getPictures} from "./pictureFunctions"
 
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
