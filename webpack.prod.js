@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const dotenv = require("dotenv")
+const { ServiceWorkerPlugin } = require("service-worker-webpack");
 dotenv.config();
 
 module.exports = {
@@ -44,6 +45,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new ServiceWorkerPlugin(),
         new HtmlWebPackPlugin(),
         new CleanWebpackPlugin({
             // Simulate the removal of files
