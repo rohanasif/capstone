@@ -21,7 +21,8 @@ submitBtn.addEventListener("click", (e) => {
 
     if (city !== "" || departTime !== "" || future < present) {
 
-        document.getElementById("time").innerHTML = `Departure in ${(future - present) / 3600000 / 24} days`
+        document.getElementById("time").innerHTML = `Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days`
+
         getCity(geoURL, city, geoUsername)
             .then(function (data) {
                 return getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
@@ -33,6 +34,7 @@ submitBtn.addEventListener("click", (e) => {
                 console.log(error);
                 alert("Please enter a valid city and a valid time");
             })
+
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
                 const total = picsData['hits'].length
@@ -45,6 +47,7 @@ submitBtn.addEventListener("click", (e) => {
                 console.log(error);
                 alert("No pictures found")
             })
+
     }
 })
 
@@ -75,7 +78,6 @@ const postWeatherData = async (url = "", data = {}) => {
 
     try {
         const newData = await response.json();
-        console.log(newData)
         return newData;
     }
     catch (error) {
@@ -87,7 +89,10 @@ const receiveWeatherData = async () => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        document.getElementById("temp").innerHTML = "DATE: " + allData['datetime'] + "\t" + "TEMPERATURE: " + allData['temp'];
+        const node = document.createElement("li");
+        const textnode = document.createTextNode("DATE: " + allData['datetime'] + "\t" + "TEMPERATURE: " + allData['temp']);
+        node.appendChild(textnode);
+        document.getElementById("entries").appendChild(node);
     }
     catch (error) {
         console.log("error", error)
