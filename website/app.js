@@ -81,7 +81,7 @@ const receiveWeatherData = async (i) => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        const node = document.getElementById(`entry-${i}`)
+        const node = document.getElementById(`entry-${i + 1}`)
         node.innerHTML = `DATE: ${allData['datetime']}     TEMPERATURE: ${allData['temp']}`
         document.getElementById("entries").appendChild(node);
     }
@@ -146,7 +146,7 @@ const postPictureData = async (url = "", data = {}) => {
 }
 
 const forLoop = async () => {
-    for (i = 0; i < 17; i++) {
+    for (i = 0; i < 16; i++) {
         try {
             const city = await document.getElementById("city").value;
             const coords = await getCity(geoURL, city, geoUsername)
@@ -156,7 +156,7 @@ const forLoop = async () => {
         }
         catch (error) {
             console.log(error);
-            // alert("Please enter a valid city and a valid time");
+            alert("Please enter a valid city and a valid time");
         }
     }
 }
