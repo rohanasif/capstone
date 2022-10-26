@@ -9,10 +9,12 @@ const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
 
+
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const city = document.getElementById("city").value;
     const departure = document.getElementById("date").value;
+
     const [depart_date, depart_time] = departure.split("T")
     const [depart_year, depart_month, depart_day] = depart_date.split("-")
     const [depart_hour, depart_minute] = depart_time.split(":")
@@ -23,17 +25,7 @@ submitBtn.addEventListener("click", (e) => {
 
         document.getElementById("time").innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
-        getCity(geoURL, city, geoUsername)
-            .then(function (data) {
-                return getWeather(weatherURL, weatherKey, data["geonames"][0]['lat'], data["geonames"][0]['lng'])
-            }).then(weatherData => {
-                return postWeatherData("/addWeather", { temp: weatherData['data'][0]['temp'], datetime: weatherData['data'][0]['datetime'] })
-            }).then(function () {
-                return receiveWeatherData()
-            }).catch(function (error) {
-                console.log(error);
-                alert("Please enter a valid city and a valid time");
-            })
+        forLoop();
 
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
@@ -85,12 +77,12 @@ const postWeatherData = async (url = "", data = {}) => {
     }
 }
 
-const receiveWeatherData = async () => {
+const receiveWeatherData = async (i) => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json()
-        const node = document.getElementById("entry")
-        node.innerHTML = "DATE: " + allData['datetime'] + "\t" + "TEMPERATURE: " + allData['temp']
+        const node = document.getElementById(`entry-${i}`)
+        node.innerHTML = `DATE: ${allData['datetime']}     TEMPERATURE: ${allData['temp']}`
         document.getElementById("entries").appendChild(node);
     }
     catch (error) {
@@ -150,5 +142,21 @@ const postPictureData = async (url = "", data = {}) => {
     }
     catch (error) {
         console.log(error);
+    }
+}
+
+const forLoop = async () => {
+    for (i = 0; i < 17; i++) {
+        try {
+            const city = await document.getElementById("city").value;
+            const coords = await getCity(geoURL, city, geoUsername)
+            const weatherData = await getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng'])
+            postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] })
+            receiveWeatherData(i)
+        }
+        catch (error) {
+            console.log(error);
+            // alert("Please enter a valid city and a valid time");
+        }
     }
 }
