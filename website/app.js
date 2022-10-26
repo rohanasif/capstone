@@ -84,7 +84,7 @@ const receiveWeatherData = async (i) => {
         const allData = await request.json();
         const node = document.createElement("li");
         node.setAttribute("id", `entry-${i + 1}`);
-        node.innerHTML = `DATE: ${allData['datetime']}     TEMPERATURE: ${allData['temp']}`;
+        node.innerHTML = `<b>DATE:</b> ${allData['datetime']} <b>TEMPERATURE:</b> ${allData['temp']}`;
 
         document.getElementById("entries").appendChild(node);
     }

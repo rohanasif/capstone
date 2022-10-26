@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Travel App</title>
+  <link rel="stylesheet" href="styles.scss" type="application/scss">
 </head>
 
 <body>
@@ -11,32 +12,39 @@
     <div class="headline">
       My travel plans
     </div>
-    <form id="userInfo">
-      <div class="city-form">
-        <label for="city">Enter City here</label>
-        <input type="text" id="city" placeholder="enter city here" required>
-      </div>
-      <div class="form">
-        <label for="date">Enter departure date</label>
-        <input type="datetime-local" id="date" required>
-        <button id="submitBtn" type="submit"> Generate </button>
-      </div>
-    </form>
     <div class="container">
-      <div class="title">Details</div>
-      <div id="img-container">
+      <div class="form-container">
+        <form id="main-form">
+          <div class="city-form">
+            <label for="city">Enter City here</label>
+            <input type="text" id="city" placeholder="enter city here" required>
+          </div>
+          <div class="date-form">
+            <label for="date">Enter departure date</label>
+            <input type="datetime-local" id="date" required>
+            <button id="submitBtn" type="submit"> Submit </button>
+          </div>
+        </form>
       </div>
-      <div id="entryHolder">
-        <div id="time"></div>
-        <br>
-        <div><b>Temperature for next 16 days:</b></div>
-        <div id="temps">
-          <ul id="entries"></ul>
+      <p class="title"><b>DETAILS</b></p>
+      <div class="data-container">
+        <div id="img-container">
+        </div>
+        <div id="entryHolder">
+          <div id="time"></div>
+          <br>
+          <div><b>Temperature for next 16 days:</b></div>
+          <div id="temps">
+            <ul id="entries"></ul>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
-  <script src="app.js" type="application/json"></script>
+
+  </div>
+  <script src="app.js" type="text/javascript"></script>
 
 </body>
 
