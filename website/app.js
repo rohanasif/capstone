@@ -18,9 +18,7 @@ const temps = document.getElementById("temps");
 
 resetBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if(dataContainer){
-        dataContainer.replaceChildren();
-    }
+    
 
 })
 submitBtn.addEventListener("click", (e) => {
@@ -39,7 +37,7 @@ submitBtn.addEventListener("click", (e) => {
         alert("Invalid input");
     }
     else{
-        
+
         time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
         forLoop();
