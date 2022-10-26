@@ -120,7 +120,11 @@ const receivePictureData = async () => {
     const request = await fetch("/allPictures");
     try {
         const allData = await request.json()
-        document.getElementById("city-pic").src = allData['pic'];
+        const node = document.createElement("img");
+        node.setAttribute("id", "city-pic");
+        node.setAttribute("src", `${allData['pic']}`);
+        node.setAttribute("alt", "Your city");
+        document.getElementById("img-container").appendChild(node);
     }
     catch (error) {
         console.log("error", error)

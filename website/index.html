@@ -3,43 +3,36 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Weather Journal</title>
+  <title>Travel App</title>
 </head>
 
 <body>
   <div id="app">
-    <div class="holder headline">
-      Weather Journal App
+    <div class="headline">
+      My travel plans
     </div>
     <form id="userInfo">
-      <div class="holder zip">
+      <div class="city-form">
         <label for="city">Enter City here</label>
         <input type="text" id="city" placeholder="enter city here" required>
       </div>
-      <div class="holder feel">
+      <div class="form">
         <label for="date">Enter departure date</label>
         <input type="datetime-local" id="date" required>
         <button id="submitBtn" type="submit"> Generate </button>
       </div>
     </form>
-    <div class="holder entry">
+    <div class="container">
       <div class="title">Details</div>
-      <div>
-        <img id="city-pic" src="" alt="your city">
+      <div id="img-container">
       </div>
       <div id="entryHolder">
         <div id="time"></div>
         <br>
         <div><b>Temperature for next 16 days:</b></div>
         <div id="temps">
-          <ul id="entries">
-
-          </ul>
-
+          <ul id="entries"></ul>
         </div>
-
-        </ul>
-
       </div>
     </div>
   </div>
