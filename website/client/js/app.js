@@ -15,13 +15,30 @@ const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
 
-
-resetBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    
-
+document.addEventListener("DOMContentLoaded",()=> {
+    submitBtn.addEventListener("click", (e) => {
+        mainFunction(e)
+    })
 })
-submitBtn.addEventListener("click", (e) => {
+
+
+const forLoop = async () => {
+    for (i = 0; i < 16; i++) {
+        try {
+            const city = await document.getElementById("city").value;
+            const coords = await getCity(geoURL, city, geoUsername)
+            const weatherData = await getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng'])
+            postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] })
+            receiveWeatherData(i)
+        }
+        catch (error) {
+            console.log(error);
+            alert("Please enter a valid city and a valid time");
+        }
+    }
+}
+
+const mainFunction = (e)=>{
     e.preventDefault();
 
     const city = document.getElementById("city").value;
@@ -56,20 +73,8 @@ submitBtn.addEventListener("click", (e) => {
                 alert("No pictures found")
             })
     } 
-})
-
-const forLoop = async () => {
-    for (i = 0; i < 16; i++) {
-        try {
-            const city = await document.getElementById("city").value;
-            const coords = await getCity(geoURL, city, geoUsername)
-            const weatherData = await getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng'])
-            postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] })
-            receiveWeatherData(i)
-        }
-        catch (error) {
-            console.log(error);
-            alert("Please enter a valid city and a valid time");
-        }
-    }
 }
+
+export {mainFunction, getCity ,postWeatherData, receiveWeatherData, getWeather, updatePictureText,
+     geoURL, geoUsername, weatherURL, weatherKey, pixabayKey,
+pixabayURL, postPictureData, receivePictureData, getPictures, forLoop}

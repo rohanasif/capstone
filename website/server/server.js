@@ -1,7 +1,9 @@
+import Server from 'webpack-dev-server';
+
 // Setup empty JS object to act as endpoint for all routes
-cityData = {};
-weatherData = {};
-picturesData = {};
+let cityData = {};
+let weatherData = {};
+let picturesData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -51,3 +53,4 @@ app.listen(3000, () => {
     console.log("Go to http://localhost:3000")
 })
 
+module.exports = {app, express, bodyParser, cors, cityData, picturesData, weatherData}
