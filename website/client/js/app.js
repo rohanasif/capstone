@@ -1,6 +1,6 @@
-import {getCity} from "./cityFunctions"
-import {postWeatherData, receiveWeatherData, getWeather} from "./weatherFunctions"
-import {updatePictureText, postPictureData, receivePictureData, getPictures} from "./pictureFunctions"
+import { getCity } from "./cityFunctions"
+import { postWeatherData, receiveWeatherData, getWeather } from "./weatherFunctions"
+import { updatePictureText, postPictureData, receivePictureData, getPictures } from "./pictureFunctions"
 import "../css/styles.scss"
 
 const geoURL = "http://api.geonames.org/searchJSON?";
@@ -16,7 +16,7 @@ const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
 
-document.addEventListener("DOMContentLoaded",()=> {
+document.addEventListener("DOMContentLoaded", () => {
     submitBtn.addEventListener("click", (e) => {
         mainFunction(e)
     })
@@ -39,7 +39,7 @@ const forLoop = async () => {
     }
 }
 
-const mainFunction = (e)=>{
+const mainFunction = (e) => {
     e.preventDefault();
 
     const city = document.getElementById("city").value;
@@ -51,10 +51,10 @@ const mainFunction = (e)=>{
 
     const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
     console.log(future);
-    if (city === "" || departure === "" || future < present){
+    if (city === "" || departure === "" || future < present) {
         alert("Invalid input");
     }
-    else{
+    else {
 
         time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
@@ -73,9 +73,11 @@ const mainFunction = (e)=>{
                 console.log(error);
                 alert("No pictures found")
             })
-    } 
+    }
 }
 
-export {mainFunction, getCity ,postWeatherData, receiveWeatherData, getWeather, updatePictureText,
-     geoURL, geoUsername, weatherURL, weatherKey, pixabayKey,
-pixabayURL, postPictureData, receivePictureData, getPictures, forLoop}
+export {
+    mainFunction, getCity, postWeatherData, receiveWeatherData, getWeather, updatePictureText,
+    geoURL, geoUsername, weatherURL, weatherKey, pixabayKey,
+    pixabayURL, postPictureData, receivePictureData, getPictures, forLoop
+}
