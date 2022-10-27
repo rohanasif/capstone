@@ -47,7 +47,8 @@ const postPictureData = async (url = "", data = {}) => {
 }
 
 const updatePictureText = async (cityData) => {
+    const imgText = document.getElementById("img-text");
     imgText.innerHTML = `Somewhere in ${city}, ${cityData['geonames'][0]['countryName']}`;
 }
 
-export {updatePictureText, postPictureData, receivePictureData, getPictures}
+export { updatePictureText, postPictureData, receivePictureData, getPictures }

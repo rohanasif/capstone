@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const forLoop = async () => {
-    for (i = 0; i < 16; i++) {
+    for (let i = 0; i < 16; i++) {
         try {
             const city = await document.getElementById("city").value;
             const coords = await getCity(geoURL, city, geoUsername)
