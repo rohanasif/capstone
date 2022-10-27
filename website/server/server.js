@@ -54,3 +54,4 @@ app.listen(3000, () => {
 })
 
 module.exports = {app, express, bodyParser, cors, cityData, picturesData, weatherData}
+module.exports = app.listen(3000);
