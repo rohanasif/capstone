@@ -50,7 +50,6 @@ const mainFunction = (e) => {
     const [depart_hour, depart_minute] = depart_time.split(":")
 
     const future = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
-    console.log(future);
     if (city === "" || departure === "" || future < present) {
         alert("Invalid input");
     }
