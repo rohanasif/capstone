@@ -74,9 +74,3 @@ const mainFunction = (e) => {
             })
     }
 }
-
-export {
-    mainFunction, getCity, postWeatherData, receiveWeatherData, getWeather, updatePictureText,
-    geoURL, geoUsername, weatherURL, weatherKey, pixabayKey,
-    pixabayURL, postPictureData, receivePictureData, getPictures, forLoop
-}
