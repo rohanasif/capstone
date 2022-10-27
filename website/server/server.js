@@ -20,7 +20,6 @@ app.use(bodyParser.json());
 app.use(cors())
 // Initialize the main project folder
 app.use(express.static('../../dist'));
-app.use(express.static('../../website'));
 
 app.get("/all", function sendData(req, res) {
     res.send(cityData);
