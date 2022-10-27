@@ -1,7 +1,7 @@
 import {getCity} from "./cityFunctions"
 import {postWeatherData, receiveWeatherData, getWeather} from "./weatherFunctions"
 import {updatePictureText, postPictureData, receivePictureData, getPictures} from "./pictureFunctions"
-import "../css/styles.scss"
+// import "../css/styles.scss"
 
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
