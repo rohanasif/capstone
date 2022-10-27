@@ -55,7 +55,7 @@ const updatePictureText = async () => {
     const city = document.getElementById("city").value;
     const imgText = document.getElementById("img-text");
     const cityData = await getCity(geoURL, city, geoUsername)
-    imgText.innerHTML = `Somewhere in ${await city}, ${cityData['geonames'][0]['countryName']}`;
+    imgText.innerHTML = `Somewhere in ${cityData['geonames'][0]['name']}, ${cityData['geonames'][0]['countryName']}`;
 }
 
 export { updatePictureText, postPictureData, receivePictureData, getPictures }
