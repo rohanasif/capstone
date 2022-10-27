@@ -21,12 +21,14 @@ module.exports = {
     stats: 'verbose',
     module: {
         rules: [
+            
+            
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: "asset/resource"
             },
             {
-                test: '/.scss$/',
+                test: /.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
