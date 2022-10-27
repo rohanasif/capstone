@@ -9,4 +9,4 @@ const getCity = async (geoURL, city, geoUsername) => {
     }
 }
 
-export {getCity}
+export { getCity }

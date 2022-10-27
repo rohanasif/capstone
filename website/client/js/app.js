@@ -5,10 +5,11 @@ import "../css/styles.scss"
 
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
-const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?"
-const weatherKey = "20028a8267a24bba9a807362767bc4a7"
-const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731"
-const pixabayURL = "https://pixabay.com/api?"
+const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
+const weatherKey = "20028a8267a24bba9a807362767bc4a7";
+const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
+const pixabayURL = "https://pixabay.com/api?";
+const city = document.getElementById("city").value;
 
 const present = new Date();
 
@@ -74,3 +75,4 @@ const mainFunction = (e) => {
             })
     }
 }
+export { city }

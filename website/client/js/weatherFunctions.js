@@ -46,4 +46,4 @@ const getWeather = async (weatherURL, weatherKey, lat, lon) => {
     }
 }
 
-export {postWeatherData, receiveWeatherData, getWeather}
+export { postWeatherData, receiveWeatherData, getWeather }

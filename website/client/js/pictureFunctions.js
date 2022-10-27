@@ -1,3 +1,8 @@
+import { city } from "./app";
+import { getCity } from "./cityFunctions";
+
+const geoURL = "http://api.geonames.org/searchJSON?";
+const geoUsername = `rohanasif1990`;
 const getPictures = async (city, pixabayURL, pixabayKey) => {
     const query = city.split(" ").join("+");
     const res = await fetch(`${pixabayURL}key=${pixabayKey}&q=${query}`);
@@ -46,9 +51,11 @@ const postPictureData = async (url = "", data = {}) => {
     }
 }
 
-const updatePictureText = async (cityData) => {
+const updatePictureText = async () => {
+    const city = document.getElementById("city").value;
     const imgText = document.getElementById("img-text");
-    imgText.innerHTML = `Somewhere in ${city}, ${cityData['geonames'][0]['countryName']}`;
+    const cityData = await getCity(geoURL, city, geoUsername)
+    imgText.innerHTML = `Somewhere in ${await city}, ${cityData['geonames'][0]['countryName']}`;
 }
 
 export { updatePictureText, postPictureData, receivePictureData, getPictures }
