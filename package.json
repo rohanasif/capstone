@@ -32,5 +32,10 @@
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.6"
+  },
+  "dependencies": {
+    "jest": "^29.2.2",
+    "jest-environment-jsdom": "^29.2.2",
+    "ts-jest": "^29.0.3"
   }
 }
