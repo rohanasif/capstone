@@ -1,5 +1,3 @@
-import Server from 'webpack-dev-server';
-
 // Setup empty JS object to act as endpoint for all routes
 let cityData = {};
 let weatherData = {};
