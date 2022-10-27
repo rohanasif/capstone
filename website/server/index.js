@@ -7,6 +7,7 @@ let picturesData = {};
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 // Start up an instance of app
 const app = express();
@@ -19,7 +20,11 @@ app.use(bodyParser.json());
 // Cors for cross origin allowance
 app.use(cors())
 // Initialize the main project folder
-app.use(express.static('../../dist'));
+app.use(express.static(path.resolve(__dirname + "../../dist/index.html")));
+
+app.get("/", (req, res) => {
+    res.sendFile('index.html', { root: 'dist' })
+})
 
 app.get("/all", function sendData(req, res) {
     res.send(cityData);
