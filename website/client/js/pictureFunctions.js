@@ -6,6 +6,7 @@ const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
 const pixabayURL = "https://pixabay.com/api?";
 
 const getPictures = async () => {
+    const city = await document.getElementById("city").value;
     const query = city.split(" ").join("+");
     const res = await fetch(`${pixabayURL}key=${pixabayKey}&q=${query}`);
     try {
@@ -54,7 +55,7 @@ const postPictureData = async (url = "", data = {}) => {
 }
 
 const updatePictureText = async () => {
-    const city = document.getElementById("city").value;
+    const city = await document.getElementById("city").value;
     const imgText = document.getElementById("img-text");
     const cityData = await getCity(geoURL, city, geoUsername)
     imgText.innerHTML = `Somewhere in ${cityData['geonames'][0]['name']}, ${cityData['geonames'][0]['countryName']}`;
