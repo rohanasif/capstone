@@ -1,3 +1,23 @@
+const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
+const weatherKey = "20028a8267a24bba9a807362767bc4a7";
+const geoURL = "http://api.geonames.org/searchJSON?";
+const geoUsername = `rohanasif1990`;
+const city = document.getElementById("city").value;
+
+import { getCity } from "./cityFunctions";
+
+const getWeather = async () => {
+    const cityData = await getCity(geoURL, city, geoUsername)
+    const res = await fetch(`${weatherURL}&lat=${cityData['geonames'][0]['lat']}&lon=${cityData['geonames'][0]['lng']}&key=${weatherKey}`);
+    try {
+        const weatherData = await res.json();
+        return weatherData;
+    }
+    catch (error) {
+        console.log("error", error);
+    }
+}
+
 const postWeatherData = async (url = "", data = {}) => {
     const response = await fetch(url, {
         method: "POST",
@@ -35,15 +55,6 @@ const receiveWeatherData = async (i) => {
     }
 }
 
-const getWeather = async (weatherURL, weatherKey, lat, lon) => {
-    const res = await fetch(`${weatherURL}&lat=${lat}&lon=${lon}&key=${weatherKey}`);
-    try {
-        const weatherData = await res.json();
-        return weatherData;
-    }
-    catch (error) {
-        console.log("error", error);
-    }
-}
+
 
 export { postWeatherData, receiveWeatherData, getWeather }
