@@ -4,5 +4,9 @@ module.exports = {
         '^.+\\.(ts|tsx)?$': 'ts-jest',
         "^.+\\.(js|jsx)$": "babel-jest",
     },
-    "testEnvironment": "jsdom"
-};
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+        "\\.(css|scss|less)$": "identity-obj-proxy"
+    }
+}
+;
