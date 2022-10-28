@@ -22,9 +22,9 @@ app.use(cors())
 // Initialize the main project folder
 app.use(express.static(path.resolve(__dirname + "../../dist")));
 
-app.get("/", (req, res) => {
-    res.sendFile('index.html', { root: 'dist' })
-})
+// app.get("/", (req, res) => {
+//     res.sendFile('index.html', { root: 'dist' })
+// })
 
 app.get("/all", function sendData(req, res) {
     res.send(cityData);
