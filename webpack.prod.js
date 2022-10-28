@@ -44,7 +44,10 @@ module.exports = {
     },
     plugins: [
         new ServiceWorkerPlugin(),
-        new HtmlWebPackPlugin(),
+        new HtmlWebPackPlugin({
+            template: "./dist/index.html",
+            filename: "./index.html",
+        }),
         new CleanWebpackPlugin({
             // Simulate the removal of files
             dry: true,
