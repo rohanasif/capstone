@@ -45,7 +45,7 @@ module.exports = {
     plugins: [
         new ServiceWorkerPlugin(),
         new HtmlWebPackPlugin({
-            template: "./dist/index.html",
+            template: "./website/client/index.html",
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
