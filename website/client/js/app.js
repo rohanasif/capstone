@@ -27,11 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
 const forLoop = async () => {
     for (let i = 0; i < 16; i++) {
         try {
-            const city = await document.getElementById("city").value;
-            const coords = await getCity(geoURL, city, geoUsername)
-            const weatherData = await getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng'])
-            postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] })
-            receiveWeatherData(i)
+            getCity(geoURL, city, geoUsername)
+                .then(coords => getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng']))
+                .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
+                .then(receiveWeatherData(i))
         }
         catch (error) {
             console.log(error);
@@ -59,7 +58,7 @@ const mainFunction = (e) => {
         time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} days</b>`
 
         forLoop();
-        updatePictureText(getCity);
+        updatePictureText();
         getPictures(city, pixabayURL, pixabayKey)
             .then(function (picsData) {
                 const total = picsData['hits'].length
