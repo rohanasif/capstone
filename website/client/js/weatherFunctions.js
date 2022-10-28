@@ -2,11 +2,12 @@ const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
 const weatherKey = "20028a8267a24bba9a807362767bc4a7";
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
-const city = document.getElementById("city").value;
+
 
 import { getCity } from "./cityFunctions";
 
 const getWeather = async () => {
+    const city = document.getElementById("city").value;
     const cityData = await getCity(geoURL, city, geoUsername)
     const res = await fetch(`${weatherURL}&lat=${cityData['geonames'][0]['lat']}&lon=${cityData['geonames'][0]['lng']}&key=${weatherKey}`);
     try {

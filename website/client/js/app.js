@@ -9,7 +9,6 @@ const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
 const weatherKey = "20028a8267a24bba9a807362767bc4a7";
 const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
 const pixabayURL = "https://pixabay.com/api?";
-const city = document.getElementById("city").value;
 
 const present = new Date();
 
@@ -17,17 +16,18 @@ const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
 
-document.addEventListener("DOMContentLoaded", () => {
-    submitBtn.addEventListener("click", (e) => {
-        mainFunction(e)
-    })
+
+submitBtn.addEventListener("click", (e) => {
+    mainFunction(e)
 })
+
 
 
 const forLoop = async () => {
     for (let i = 0; i < 16; i++) {
         try {
-            getCity(geoURL, city, geoUsername)
+
+            getCity()
                 .then(coords => getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng']))
                 .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
                 .then(receiveWeatherData(i))
@@ -59,7 +59,7 @@ const mainFunction = (e) => {
 
         forLoop();
         updatePictureText();
-        getPictures(city, pixabayURL, pixabayKey)
+        getPictures()
             .then(function (picsData) {
                 const total = picsData['hits'].length
                 const picIndex = Math.floor(Math.random() * total)
@@ -74,4 +74,3 @@ const mainFunction = (e) => {
             })
     }
 }
-export { city }
