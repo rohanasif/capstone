@@ -25,7 +25,7 @@ const receivePictureData = async () => {
         const node = document.createElement("img");
         node.setAttribute("id", "city-pic");
         node.setAttribute("src", `${allData['pic']}`);
-        node.setAttribute("alt", "Your city");
+        node.setAttribute("alt", "Your destination city");
         document.getElementById("img-container").appendChild(node);
     }
     catch (error) {
