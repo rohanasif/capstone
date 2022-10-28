@@ -59,10 +59,10 @@ const mainFunction = (e) => {
             .then(function (picsData) {
                 const total = picsData['hits'].length
                 const picIndex = Math.floor(Math.random() * total)
-                return postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] })
+                postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] })
             })
             .then(function () {
-                return receivePictureData();
+                receivePictureData();
             })
             .catch(function (error) {
                 console.log(error);
