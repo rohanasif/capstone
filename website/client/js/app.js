@@ -1,4 +1,3 @@
-import { getCity } from "./cityFunctions"
 import { postWeatherData, receiveWeatherData, getWeather } from "./weatherFunctions"
 import { updatePictureText, postPictureData, receivePictureData, getPictures } from "./pictureFunctions"
 import "../css/styles.scss"
