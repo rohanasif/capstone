@@ -3,7 +3,8 @@ import { updatePictureText, postPictureData, receivePictureData, getPictures } f
 import "../css/styles.scss"
 
 const present = new Date();
-
+const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
+const pixabayURL = "https://pixabay.com/api?";
 const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const forLoop = async () => {
     for (let i = 0; i < 16; i++) {
         try {
-            getWeather()
+            await getWeather(city)
                 .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
                 .then(receiveWeatherData(i))
         }
@@ -49,7 +50,7 @@ const mainFunction = (e) => {
 
         forLoop();
         updatePictureText();
-        getPictures()
+        getPictures(pixabayURL, pixabayKey)
             .then(picsData => {
                 const total = picsData['hits'].length
                 const picIndex = Math.floor(Math.random() * total)
