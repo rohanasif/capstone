@@ -2,9 +2,6 @@ import { postWeatherData, receiveWeatherData, getWeather } from "./weatherFuncti
 import { updatePictureText, postPictureData, receivePictureData, getPictures } from "./pictureFunctions"
 import "../css/styles.scss"
 
-const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
-const weatherKey = "20028a8267a24bba9a807362767bc4a7";
-
 const present = new Date();
 
 const submitBtn = document.getElementById("submitBtn");
@@ -53,14 +50,12 @@ const mainFunction = (e) => {
         forLoop();
         updatePictureText();
         getPictures()
-            .then(function (picsData) {
+            .then(picsData => {
                 const total = picsData['hits'].length
                 const picIndex = Math.floor(Math.random() * total)
                 postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] })
             })
-            .then(function () {
-                receivePictureData();
-            })
+            .then(receivePictureData())
             .catch(function (error) {
                 console.log(error);
                 alert("No pictures found")
