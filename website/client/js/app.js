@@ -13,8 +13,10 @@ const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
 
 
-submitBtn.addEventListener("click", (e) => {
-    mainFunction(e)
+document.addEventListener("DOMContentLoaded", () => {
+    submitBtn.addEventListener("click", (e) => {
+        mainFunction(e)
+    })
 })
 
 
