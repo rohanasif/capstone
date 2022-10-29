@@ -43,13 +43,13 @@ const receiveWeatherData = async (i) => {
     const request = await fetch("/allWeather");
     try {
         const allData = await request.json();
-        if(allData['datatime']!==undefined && allData['temp']!==undefined){
+        if (allData['datatime'] !== undefined && allData['temp'] !== undefined) {
             const node = document.createElement("li");
             node.setAttribute("id", `entry-${i + 1}`);
             node.innerHTML = `<b>DATE:</b> ${allData['datetime']} <b>TEMPERATURE:</b> ${allData['temp']}`;
             document.getElementById("entries").appendChild(node);
         }
-        
+
     }
     catch (error) {
         console.log("error", error)
