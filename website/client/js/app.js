@@ -19,16 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 })
 
-
-
 const forLoop = async () => {
     for (let i = 0; i < 16; i++) {
         try {
-
             getWeather()
                 .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
                 .then(receiveWeatherData(i))
-
         }
         catch (error) {
             console.log(error);
