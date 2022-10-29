@@ -22,14 +22,14 @@ const receivePictureData = async () => {
     const request = await fetch("/allPictures");
     try {
         const allData = await request.json();
-        if (allData['pic']!== undefined){
+        if (allData['pic'] !== undefined) {
             const node = document.createElement("img");
             node.setAttribute("id", "city-pic");
             node.setAttribute("src", `${allData['pic']}`);
             node.setAttribute("alt", "Your destination city");
             document.getElementById("img-container").appendChild(node);
         }
-        
+
     }
     catch (error) {
         console.log("error", error)
