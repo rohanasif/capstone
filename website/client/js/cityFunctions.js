@@ -1,5 +1,5 @@
 const geoURL = "http://api.geonames.org/searchJSON?";
-const geoUsername = `rohanasif1990`;
+const geoUsername = "rohanasif1990";
 
 
 const getCity = async () => {
