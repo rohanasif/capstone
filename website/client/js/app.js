@@ -25,10 +25,10 @@ const forLoop = async () => {
     for (let i = 0; i < 16; i++) {
         try {
 
-            getCity()
-                .then(coords => getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng']))
+            getWeather()
                 .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
                 .then(receiveWeatherData(i))
+
         }
         catch (error) {
             console.log(error);
