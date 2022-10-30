@@ -1,7 +1,5 @@
 import { getCity } from "./cityFunctions";
 
-const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
-const weatherKey = "20028a8267a24bba9a807362767bc4a7";
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
 
