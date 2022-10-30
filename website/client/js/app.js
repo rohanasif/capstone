@@ -1,12 +1,15 @@
 import { postWeatherData, receiveWeatherData, getWeather } from "./weatherFunctions"
 import { updatePictureText, postPictureData, receivePictureData, getPictures } from "./pictureFunctions"
+import { getCity } from "./cityFunctions";
 import "../css/styles.scss"
 
 const present = new Date();
-const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
-const pixabayURL = "https://pixabay.com/api?";
+
 const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
 const weatherKey = "20028a8267a24bba9a807362767bc4a7";
+const geoURL = "http://api.geonames.org/searchJSON?";
+const geoUsername = "rohanasif1990";
+
 const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
@@ -19,12 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const forLoop = async () => {
-    const city = document.getElementById("city").value;
+    const city = await document.getElementById("city").value;
     for (let i = 0; i < 16; i++) {
         try {
-            getWeather(weatherURL, weatherKey)
-                .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
-                .then(receiveWeatherData(i))
+            const coords = await getCity(geoURL, city, geoUsername)
+            const weatherData = await getWeather(weatherURL, weatherKey, coords["geonames"][0]['lat'], coords["geonames"][0]['lng'])
+            postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] })
+            receiveWeatherData(i)
         }
         catch (error) {
             console.log(error);
@@ -53,7 +57,7 @@ const mainFunction = (e) => {
 
         forLoop();
         updatePictureText();
-        getPictures(pixabayURL, pixabayKey)
+        getPictures()
             .then(picsData => {
                 const total = picsData['hits'].length
                 const picIndex = Math.floor(Math.random() * total)

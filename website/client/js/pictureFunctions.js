@@ -2,9 +2,11 @@ import { getCity } from "./cityFunctions";
 
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = "rohanasif1990";
+const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
+const pixabayURL = "https://pixabay.com/api?";
 
 
-const getPictures = async (pixabayURL, pixabayKey) => {
+const getPictures = async () => {
     const city = document.getElementById("city").value;
     const query = city.split(" ").join("+");
     const res = await fetch(`${pixabayURL}key=${pixabayKey}&q=${query}`);
