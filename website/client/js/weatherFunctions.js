@@ -5,10 +5,9 @@ const weatherKey = "20028a8267a24bba9a807362767bc4a7";
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = `rohanasif1990`;
 
-const getWeather = async () => {
-    const city = document.getElementById("city").value;
+const getWeather = async (weatherURL, weatherKey) => {
     try {
-        getCity(geoURL, geoUsername, city)
+        getCity(geoURL, geoUsername)
             .then(async cityData => await fetch(`${weatherURL}&lat=${cityData['geonames'][0]['lat']}&lon=${cityData['geonames'][0]['lng']}&key=${weatherKey}`))
             .then(async res => await res.json())
     }

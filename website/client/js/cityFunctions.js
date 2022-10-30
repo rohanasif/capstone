@@ -1,4 +1,5 @@
-const getCity = async (geoURL, geoUsername, city) => {
+const getCity = async (geoURL, geoUsername) => {
+    const city = document.getElementById("city").value;
     const res = await fetch(`${geoURL}q=${city}&username=${geoUsername}`);
     try {
         const cityData = await res.json();

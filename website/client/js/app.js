@@ -22,7 +22,7 @@ const forLoop = async () => {
     const city = document.getElementById("city").value;
     for (let i = 0; i < 16; i++) {
         try {
-            getWeather(weatherURL, weatherKey, city)
+            getWeather(weatherURL, weatherKey)
                 .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
                 .then(receiveWeatherData(i))
         }
