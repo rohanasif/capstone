@@ -21,8 +21,10 @@
           </div>
           <br>
           <div id="date-form">
-            <label for="date">Enter departure date</label>
+            <label for="departure">Enter departure date</label>
             <input type="datetime-local" id="date" required>
+            <label for="arrival">Enter arrival date</label>
+            <input type="datetime-local" id="arrival" required>
             <button id="submitBtn" type="submit">Submit</button>
             <button id="resetBtn" type="submit"> Reset</button>
           </div>
@@ -31,9 +33,13 @@
       <p id="title"><b>DETAILS</b></p>
       <div id="data-container">
         <div id="img-container"></div>
+        <br>
         <div id="img-text"></div>
+        <br>
         <div id="entry-holder">
           <div id="time"></div>
+          <br>
+          <div id="trip-length"></div>
           <br>
           <div id="temps">
             <ul id="entries"></ul>
