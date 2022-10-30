@@ -14,10 +14,14 @@ const pixabayURL = "https://pixabay.com/api?";
 
 const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
+const dataContainer = document.getElementById("data-container");
+
 const time = document.getElementById("time");
 const tripLength = document.getElementById("trip-length");
 
-
+resetBtn.addEventListener("click", (e) => {
+    dataContainer.innerHTML = "";
+})
 
 submitBtn.addEventListener("click", (e) => {
     mainFunction(e)
