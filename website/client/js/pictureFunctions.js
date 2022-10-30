@@ -2,11 +2,10 @@ import { getCity } from "./cityFunctions";
 
 const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = "rohanasif1990";
-const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
-const pixabayURL = "https://pixabay.com/api?";
 
 
-const getPictures = async () => {
+
+const getPictures = async (pixabayKey, pixabayURL) => {
     const city = document.getElementById("city").value;
     const query = city.split(" ").join("+");
     const res = await fetch(`${pixabayURL}key=${pixabayKey}&q=${query}`);
@@ -23,14 +22,11 @@ const receivePictureData = async () => {
     const request = await fetch("/allPictures");
     try {
         const allData = await request.json();
-        if (allData['pic'] !== undefined) {
-            const node = document.createElement("img");
-            node.setAttribute("id", "city-pic");
-            node.setAttribute("src", `${allData['pic']}`);
-            node.setAttribute("alt", "Your destination city");
-            document.getElementById("img-container").appendChild(node);
-        }
-
+        const node = document.createElement("img");
+        node.setAttribute("id", "city-pic");
+        node.setAttribute("src", `${allData['pic']}`);
+        node.setAttribute("alt", "Your destination city");
+        document.getElementById("img-container").appendChild(node);
     }
     catch (error) {
         console.log("error", error)
@@ -58,10 +54,10 @@ const postPictureData = async (url = "", data = {}) => {
     }
 }
 
-const updatePictureText = () => {
+const updatePictureText = async () => {
     const city = document.getElementById("city").value;
     const imgText = document.getElementById("img-text");
-    const cityData = getCity(geoURL, geoUsername, city)
+    const cityData = await getCity(geoURL, geoUsername, city)
     imgText.innerHTML = `Somewhere in ${cityData['geonames'][0]['name']}, ${cityData['geonames'][0]['countryName']}`;
 }
 
