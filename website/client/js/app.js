@@ -5,6 +5,8 @@ import "../css/styles.scss"
 const present = new Date();
 const pixabayKey = "30776478-ff0b8818f9bba72161ebb1731";
 const pixabayURL = "https://pixabay.com/api?";
+const weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
+const weatherKey = "20028a8267a24bba9a807362767bc4a7";
 const submitBtn = document.getElementById("submitBtn");
 const resetBtn = document.getElementById("resetBtn");
 const time = document.getElementById("time");
@@ -17,15 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const forLoop = async () => {
+    const city = document.getElementById("city").value;
     for (let i = 0; i < 16; i++) {
         try {
-            await getWeather(city)
+            getWeather(weatherURL, weatherKey, city)
                 .then(weatherData => postWeatherData("/addWeather", { temp: weatherData['data'][i]['temp'], datetime: weatherData['data'][i]['datetime'] }))
                 .then(receiveWeatherData(i))
         }
         catch (error) {
             console.log(error);
-            alert("Please enter a valid city and a valid time");
+            // alert("Please enter a valid city and a valid time");
         }
     }
 }

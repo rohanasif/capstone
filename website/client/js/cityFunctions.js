@@ -1,9 +1,4 @@
-const geoURL = "http://api.geonames.org/searchJSON?";
-const geoUsername = "rohanasif1990";
-
-
-const getCity = async () => {
-    const city = document.getElementById("city").value;
+const getCity = async (geoURL, geoUsername, city) => {
     const res = await fetch(`${geoURL}q=${city}&username=${geoUsername}`);
     try {
         const cityData = await res.json();
