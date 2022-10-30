@@ -8,7 +8,6 @@ module.exports = {
     entry: './website/client/js/app.js',
     devtool: 'source-map',
     devServer: {
-        historyApiFallback: true,
         static: {
             directory: path.join(__dirname, 'dist'),
         },
