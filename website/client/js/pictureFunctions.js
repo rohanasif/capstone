@@ -1,7 +1,7 @@
 import { getCity } from "./cityFunctions";
 
 const geoURL = "http://api.geonames.org/searchJSON?";
-const geoUsername = `rohanasif1990`;
+const geoUsername = "rohanasif1990";
 
 
 const getPictures = async (pixabayURL, pixabayKey) => {
