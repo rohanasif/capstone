@@ -18,33 +18,14 @@ const getPictures = async (pixabayKey, pixabayURL) => {
     }
 }
 
-const receivePictureData = async (pixabayURL, pixabayKey) => {
+const receivePictureData = async () => {
     const request = await fetch("/allPictures");
     try {
         const allData = await request.json();
         const node = document.createElement("img");
         node.setAttribute("id", "city-pic");
-        // If city picture exists just post that
-        if (allData['pic']) {
-            node.setAttribute("src", `${allData['pic']}`);
-        }
-        // Else post a picture of the country of origin
-        else {
-            const city = document.getElementById("city").value;
-            const cityData = await getCity(geoURL, geoUsername, city)
-            const countryName = cityData['geonames'][0]['countryName']
-            const res = await fetch(`${pixabayURL}key=${pixabayKey}&q=${countryName}`)
-            try {
-                const picsData = await res.json();
-                node.setAttribute("src", picsData)
-            }
-            catch (error) {
-                console.log("error", error)
-            }
-
-        }
-
-        node.setAttribute("alt", "Your destination city/country");
+        node.setAttribute("src", `${allData['pic']}`);
+        node.setAttribute("alt", "Your destination city");
         document.getElementById("img-container").appendChild(node);
     }
     catch (error) {
