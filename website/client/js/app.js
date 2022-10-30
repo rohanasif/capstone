@@ -67,7 +67,7 @@ const mainFunction = (e) => {
     }
     else {
 
-        time.innerHTML = `<b>Departure in ${Math.ceil((future - present) / 3600 / 1000 / 24)} day(s)</b>`;
+        time.innerHTML = `<b>Departure in ${Math.ceil((formattedDeparture - present) / 3600 / 1000 / 24)} day(s)</b>`;
         tripLength.innerHTML = `<b>Trip length is ${Math.ceil((formattedArrival - formattedDeparture) / 3600 / 1000 / 24)} day(s)<b>`;
         forLoop();
         updatePictureText();
