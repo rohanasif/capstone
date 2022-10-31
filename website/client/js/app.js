@@ -19,12 +19,16 @@ const dataContainer = document.getElementById("data-container");
 const time = document.getElementById("time");
 const tripLength = document.getElementById("trip-length");
 
-resetBtn.addEventListener("click", (e) => {
-    dataContainer.innerHTML = "";
+document.addEventListener('DOMContentLoaded', function () {
+    resetBtn.addEventListener("click", (e) => {
+        dataContainer.innerHTML = "";
+    })
 })
 
-submitBtn.addEventListener("click", (e) => {
-    mainFunction(e)
+document.addEventListener('DOMContentLoaded', function () {
+    submitBtn.addEventListener("click", (e) => {
+        mainFunction(e)
+    })
 })
 
 const forLoop = () => {
