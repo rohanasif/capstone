@@ -7,4 +7,5 @@ Steps:
 4. "npm run start" to start the server
 5. Go to localhost:3000 in an incognito window
 6. Enter a city, departure date and arrival date
-7. After everthing displays, press reset and go to step 6 if needed
+7. Note: Sometimes the image doesn't load the first time. In that case just refresh and try step 6 again
+8. After everthing displays, press reset and go to step 6 if needed
