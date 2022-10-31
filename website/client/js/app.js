@@ -70,7 +70,7 @@ const mainFunction = (e) => {
     const formattedDeparture = new Date(depart_year, depart_month - 1, depart_day, depart_hour, depart_minute);
     const formattedArrival = new Date(arrival_year, arrival_month - 1, arrival_day, arrival_hour, arrival_minute);
 
-    if (city === "" || formattedDeparture < present || formattedArrival < present || formattedArrival < formattedDeparture) {
+    if (city === "" || formattedArrival < present || formattedArrival < formattedDeparture) {
         alert("Invalid input");
     }
     else {
@@ -83,7 +83,13 @@ const mainFunction = (e) => {
             .then(function (picsData) {
                 const total = picsData['hits'].length;
                 const picIndex = Math.floor(Math.random() * total);
-                postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] });
+                if (picsData['hits'][picIndex]["webformatURL"]) {
+                    postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] });
+                }
+                else {
+                    alert("The picture could not be loaded. Please refresh and try again");
+                }
+
             })
             .then(receivePictureData())
             .catch(function (error) {
