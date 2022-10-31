@@ -83,13 +83,7 @@ const mainFunction = (e) => {
             .then(function (picsData) {
                 const total = picsData['hits'].length;
                 const picIndex = Math.floor(Math.random() * total);
-                if (picsData['hits'][picIndex]["webformatURL"]) {
-                    postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] });
-                }
-                else {
-                    alert("The picture could not be loaded. Please refresh and try again");
-                }
-
+                postPictureData("/addPicture", { pic: picsData['hits'][picIndex]["webformatURL"] });
             })
             .then(receivePictureData())
             .catch(function (error) {
