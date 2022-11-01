@@ -1,3 +1,4 @@
+/* Function to GET Weather API data */
 const getWeather = async (weatherURL, weatherKey, lat, lon) => {
     try {
         const res = await fetch(`${weatherURL}key=${weatherKey}&lat=${lat}&lon=${lon}`)
@@ -9,6 +10,7 @@ const getWeather = async (weatherURL, weatherKey, lat, lon) => {
     }
 }
 
+/* Function to POST data */
 const postWeatherData = async (url = "", data = {}) => {
     const response = await fetch(url, {
         method: "POST",
@@ -31,6 +33,7 @@ const postWeatherData = async (url = "", data = {}) => {
     }
 }
 
+/* Function to update the UI with received data */
 const receiveWeatherData = async (i) => {
     const request = await fetch("/allWeather");
     try {

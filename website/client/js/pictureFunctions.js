@@ -4,7 +4,7 @@ const geoURL = "http://api.geonames.org/searchJSON?";
 const geoUsername = "rohanasif1990";
 
 
-
+/* Function to GET Picture API Data*/
 const getPictures = async (pixabayKey, pixabayURL) => {
     const city = document.getElementById("city").value;
     const query = city.split(" ").join("+");
@@ -18,6 +18,7 @@ const getPictures = async (pixabayKey, pixabayURL) => {
     }
 }
 
+/* Function to Update the UI with the received data*/
 const receivePictureData = async () => {
     const request = await fetch("/allPictures");
     try {
@@ -33,6 +34,7 @@ const receivePictureData = async () => {
     }
 }
 
+/* Function to POST data */
 const postPictureData = async (url = "", data = {}) => {
     const response = await fetch(url, {
         method: "POST",

@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 })
 
+// Get the weather for next 16 days
 const forLoop = () => {
     const city = document.getElementById("city").value;
     for (let i = 0; i < 16; i++) {
@@ -45,7 +46,6 @@ const forLoop = () => {
         }
         catch (error) {
             console.log(error);
-            // alert("Please enter a valid city and a valid time");
         }
     }
 }
